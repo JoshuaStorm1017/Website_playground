@@ -1,0 +1,49 @@
+// Print styles
+// Hide non-essential elements for printing
+body {
+    background-color: #fff !important; // Ensure white background for printing
+    color: #000 !important; // Ensure black text for printing
+}
+
+header, footer, nav, aside, form {
+    display: none !important;
+}
+
+// Ensure text is legible and layout is print-friendly
+main {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+a {
+    text-decoration: underline !important;
+    color: #000 !important;
+}
+
+// Add page breaks where appropriate (e.g., before headings)
+h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+}
+
+p, blockquote {
+    page-break-inside: avoid;
+}
+
+// Ensure images and tables don't break across pages awkwardly
+img, table {
+    page-break-inside: avoid;
+    page-break-after: avoid;
+}
+
+// Add URLs after links for print
+a[href]:after {
+    content: " (" attr(href) ")";
+}
+
+// Remove background images and colors to save ink
+* {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}

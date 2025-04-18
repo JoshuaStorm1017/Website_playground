@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block title %}File Upload - Consolidated Document Solutions{% endblock %}
+{% block description %}Upload your files securely to Consolidated Document Solutions. Our streamlined process ensures your print projects are handled efficiently.{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Upload Your Files</h1>
+        <div class="breadcrumbs">
+            <a href="{{ url_for('home') }}">Home</a> &gt; 
+            <span>File Upload</span>
+        </div>
+    </div>
+</section>
+
+<!-- Upload Content -->
+<section class="page-content">
+    <div class="container">
+        <div class="page-grid">
+            <!-- Main Content -->
+            <div class="page-main">
+                <div class="content-section slide-up">
+                    <p class="intro-text">Need to send us files for printing or processing? Our secure file upload system makes it easy to share your documents. Simply fill out the form below, attach your files, and our team will handle the rest.</p>
+                    
+                    <div class="file-upload-container">
+                        <form class="upload-form" id="uploadForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="name">Full Name <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="company">Company Name</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address <span class="required">*</span></label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="project-type">Project Type <span class="required">*</span></label>
+                                <select id="project-type" name="project-type" required>
+                                    <option value="" disabled selected>Select a project type</option>
+                                    <option value="brochure">Brochures & Flyers</option>
+                                    <option value="business-cards">Business Cards</option>
+                                    <option value="forms">Business Forms</option>
+                                    <option value="labels">Labels & Tags</option>
+                                    <option value="promotional">Promotional Products</option>
+                                    <option value="packaging">Packaging</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="project-details">Project Details</label>
+                                <textarea id="project-details" name="project-details" rows="4" placeholder="Please provide any special instructions or details about your project"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="deadline">Desired Completion Date</label>
+                                <input type="date" id="deadline" name="deadline">
+                            </div>
+                            
+                            <div class="file-upload-field">
+                                <label>Upload Files <span class="required">*</span></label>
+                                <div class="dropzone" id="file-dropzone">
+                                    <div class="dropzone-content">
+                                        <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                            <polyline points="17 8 12 3 7 8"></polyline>
+                                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                                        </svg>
+                                        <p>Drag and drop files here, or <span class="browse-link">browse</span> to upload</p>
+                                        <p class="upload-note">Max file size: 100MB per file. Supported formats: PDF, JPG, PNG, AI, EPS, PSD, INDD</p>
+                                    </div>
+                                    <input type="file" id="file-input" name="files[]" multiple hidden required>
+                                </div>
+                                <div class="file-list" id="file-list"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <label for="terms">I agree to the <a href="#">Terms and Conditions</a> <span class="required">*</span></label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="submit" class="btn btn-primary">Upload Files</button>
+                                <button type="reset" class="btn btn-outline">Clear Form</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="content-section slide-up">
+                    <h2>Upload Guidelines</h2>
+                    
+                    <div class="guidelines-container">
+                        <div class="guideline-card">
+                            <div class="guideline-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
+                                    <line x1="12" y1="6" x2="12" y2="18"></line>
+                                    <line x1="6" y1="12" x2="18" y2="12"></line>
+                                </svg>
+                            </div>
+                            <h3>File Resolution</h3>
+                            <p>For best printing quality, all images should be 300 DPI or higher. Lower resolution files may result in pixelated or blurry output.</p>
+                        </div>
+                        
+                        <div class="guideline-card">
+                            <div class="guideline-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.48-8.48l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                                </svg>
+                            </div>
+                            <h3>File Formats</h3>
+                            <p>We accept PDF, AI, EPS, PSD, INDD, JPG, PNG, and TIFF formats. PDF is preferred for print-ready files with fonts embedded or converted to outlines.</p>
+                        </div>
+                        
+                        <div class="guideline-card">
+                            <div class="guideline-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                                    <line x1="3" y1="15" x2="21" y2="15"></line>
+                                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                                    <line x1="15" y1="3" x2="15" y2="21"></line>
+                                </svg>
+                            </div>
+                            <h3>Bleed & Margins</h3>
+                            <p>Include a 0.125" (1/8") bleed on all sides for documents with elements that extend to the edge. Keep important content at least 0.25" (1/4") from the trim edges.</p>
+                        </div>
+                        
+                        <div class="guideline-card">
+                            <div class="guideline-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Color Mode</h3>
+                            <p>Use CMYK color mode for all print projects. RGB files will be converted to CMYK, which may result in color shifts. Use Pantone colors for specific color matching needs.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section slide-up">
+                    <h2>Large File Uploads</h2>
+                    <p>Having trouble uploading large files? For files over 100MB, we recommend using our secure FTP server or a file sharing service like Dropbox or WeTransfer. Contact us at <a href="mailto:uploads@cdocsolutions.com">uploads@cdocsolutions.com</a> for FTP access information.</p>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="page-sidebar">
+                <div class="sidebar-card">
+                    <h3>Need Help?</h3>
+                    <p>If you have questions about file preparation or experiencing upload issues, our team is here to help.</p>
+                    <div class="sidebar-contact">
+                        <p>
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                                <div>
+                                    <h4>Phone Support</h4>
+                                    <p><a href="tel:8006726726">800-672-6726</a><br>
+                                    Monday - Friday: 8:00 AM - 5:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3>Quick Links</h3>
+                    <nav class="sidebar-nav">
+                        <ul>
+                            <li><a href="{{ url_for('about') }}">About Us</a></li>
+                            <li><a href="{{ url_for('service_detail', service_id='commercial-printing') }}">Our Services</a></li>
+                            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                            <li><a href="{{ url_for('file_upload') }}">Request a Quote</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="sidebar-cta">
+                    <h3>Technical Specifications</h3>
+                    <p>Need information about file preparation or print specifications?</p>
+                    <a href="{{ url_for('specs_page') }}" class="btn btn-secondary btn-full">View Print Specs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section slide-up">
+    <div class="container">
+        <h2 class="section-title">File Upload FAQs</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What happens after I upload my files?</h3>
+                    <span class="faq-icon"></span>
+                </div>
+                <div class="faq-answer">
+                    <p>After uploading, you'll receive an email confirmation. Our prepress team will review your files for print readiness within one business day. If there are any issues with your files, we'll contact you to resolve them before proceeding with production.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I upload multiple files?</h3>
+                    <span class="faq-icon"></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can upload multiple files simultaneously. Simply select all the files you need to upload when browsing, or drag and drop multiple files into the upload area.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What file types do you accept?</h3>
+                    <span class="faq-icon"></span>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept PDF, AI, EPS, PSD, INDD, JPG, PNG, and TIFF formats. For best results, PDF files with embedded fonts and high-resolution images are recommended.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is my data secure?</h3>
+                    <span class="faq-icon"></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we use secure SSL encryption for all file transfers. Your files are stored on our secure servers and are only accessible to authorized personnel involved in your project. We respect your confidentiality and privacy.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Need Assistance?</h2>
+            <p>Our customer support team is ready to help with any questions about your file preparation or upload.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">CONTACT SUPPORT</a>
+                <a href="tel:8006726726" class="btn btn-outline">CALL US</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

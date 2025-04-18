@@ -1,0 +1,10 @@
+flask==2.2.3
+werkzeug==2.2.3
+flask-wtf==1.1.1
+email-validator==1.3.1
+pillow==9.5.0
+flask-assets==2.0
+libsass==0.22.0
+jsmin==3.0.1
+cssmin==0.2.0
+gunicorn==20.1.0

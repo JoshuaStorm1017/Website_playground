@@ -1,0 +1,396 @@
+/* 
+* Responsive SCSS for Consolidated Document Solutions
+* This file contains styles for different screen sizes
+*/
+
+// Import variables
+@import 'variables';
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: $breakpoint-sm) {
+  .container {
+    max-width: 540px;
+  }
+  
+  .slide-title {
+    font-size: 2.2rem;
+  }
+  
+  .slide-subtitle {
+    font-size: 1.6rem;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: $breakpoint-md) {
+  .container {
+    max-width: 720px;
+  }
+  
+  section {
+    padding: 80px 0;
+  }
+  
+  .slide-content {
+    padding: 0;
+  }
+  
+  .slide-title {
+    font-size: 2.8rem;
+  }
+  
+  .slide-subtitle {
+    font-size: 1.8rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .testimonials-section .testimonial-card {
+    padding: 40px;
+  }
+  
+  .industry-toggle {
+    font-size: 1.1rem;
+  }
+  
+  .footer-column {
+    margin-bottom: 0;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: $breakpoint-lg) {
+  .container {
+    max-width: 960px;
+  }
+  
+  .slide-title {
+    font-size: 3.5rem;
+  }
+  
+  .slide-subtitle {
+    font-size: 2rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+  }
+  
+  .main-nav {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    padding: 0;
+  }
+  
+  .nav-dropdown .dropdown-content {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    display: block;
+  }
+  
+  .nav-dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: $breakpoint-xl) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+// Only display on specific breakpoints
+.d-sm-none {
+  @media (max-width: #{$breakpoint-sm - 1}) {
+    display: none !important;
+  }
+}
+
+.d-md-none {
+  @media (max-width: #{$breakpoint-md - 1}) {
+    display: none !important;
+  }
+}
+
+.d-lg-none {
+  @media (max-width: #{$breakpoint-lg - 1}) {
+    display: none !important;
+  }
+}
+
+.d-sm-block {
+  @media (min-width: $breakpoint-sm) {
+    display: block !important;
+  }
+}
+
+.d-md-block {
+  @media (min-width: $breakpoint-md) {
+    display: block !important;
+  }
+}
+
+.d-lg-block {
+  @media (min-width: $breakpoint-lg) {
+    display: block !important;
+  }
+}
+
+/* ===== RESPONSIVE TWEAKS ===== */
+// Ensure images are responsive on smaller screens
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Adjust padding and margins on smaller screens
+@media (max-width: #{$breakpoint-md - 1}) {
+  section {
+    padding: 40px 0;
+  }
+  
+  .header .logo img {
+    height: 40px;
+  }
+  
+  .top-bar-content {
+    text-align: center;
+  }
+  
+  .services-section .service-card {
+    padding: 20px;
+  }
+  
+  .about-section .about-content,
+  .industries-section .industries-content,
+  .features-section .feature-content,
+  .footer h3,
+  .page-content h1 {
+    text-align: center;
+    
+    &:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  
+  .feature-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    .feature-icon {
+      margin: 0 0 15px 0;
+    }
+  }
+  
+  .industries-list {
+    margin: 0 auto 20px;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    
+    .btn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  .footer-logo,
+  .footer-contact {
+    text-align: center;
+    
+    address p {
+      justify-content: center;
+    }
+  }
+  
+  .copyright {
+    margin-top: 20px;
+  }
+  
+  .contact-section .contact-form-container,
+  .contact-section .contact-info,
+  .file-upload-section .upload-container {
+    padding: 25px;
+  }
+  
+  .file-upload-section .upload-area {
+    padding: 25px;
+  }
+}
+
+// Additional tweaks for very small screens
+@media (max-width: #{$breakpoint-sm - 1}) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  .slide-title {
+    font-size: 1.8rem;
+  }
+  
+  .slide-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .industries-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .testimonial-card {
+    padding: 25px 20px;
+  }
+  
+  .page-content .about-image {
+    float: none;
+    margin: 0 0 20px 0;
+    max-width: 100%;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ===== Additional Responsive Tweaks for New Components ===== */
+
+@media (max-width: #{$breakpoint-lg - 1}) {
+  // Service Detail Page
+  .service-detail-section {
+    .page-grid { // Assuming it uses the same grid structure
+      grid-template-columns: 1fr; // Stack sidebar and main content
+    }
+    .page-main { order: 1; } // Content first
+    .page-sidebar { order: 2; } // Sidebar second
+  }
+
+  // Contact Page
+  .contact-section .contact-grid {
+    grid-template-columns: 1fr; // Stack form and info
+  }
+}
+
+@media (max-width: #{$breakpoint-md - 1}) {
+  // Service Detail Page
+  .service-detail-section .service-header h1 {
+    font-size: 2rem; // Adjust heading size
+  }
+  .service-detail-section .service-content h2 {
+    font-size: 1.5rem; // Adjust subheading size
+  }
+
+  // Testimonials Page
+  .testimonials-grid .testimonial {
+    padding: 25px 20px; // Reduce padding
+    &:before {
+      font-size: 60px; // Reduce quote size
+      top: 5px;
+      left: 15px;
+    }
+  }
+
+  // Industries Page (Accordion)
+  .industries-list-page .industry-toggle {
+    padding: 15px; // Reduce padding
+    font-size: 1rem;
+    &:after {
+      font-size: 1.2rem;
+      right: 15px;
+    }
+  }
+   .industries-list-page .industry-content {
+      padding: 0 15px 15px; // Adjust padding when open
+   }
+
+
+  // File Upload Page
+  .file-upload-section .upload-area {
+    padding: 30px; // Reduce padding
+    svg {
+      width: 50px; // Smaller icon
+      height: 50px;
+    }
+    h3 { font-size: 1.1rem; }
+    p { font-size: 0.9rem; }
+  }
+  .file-upload-section .file-list .file-item {
+    padding: 10px; // Reduce padding
+    flex-wrap: wrap; // Allow wrapping for small screens
+
+     .file-name {
+        width: 100%; // Take full width initially
+        margin-bottom: 5px;
+     }
+     .file-size {
+        margin-right: 10px; // Adjust spacing
+     }
+  }
+
+
+  // Error Pages
+  .error-section {
+    padding: 60px 0;
+    h1 { font-size: 4.5rem; } // Smaller heading
+    h2 { font-size: 1.5rem; }
+    p { font-size: 1rem; }
+  }
+}
+
+@media (max-width: #{$breakpoint-sm - 1}) {
+   // Further reduce font sizes if needed
+   .service-detail-section .service-header h1 { font-size: 1.8rem; }
+   .service-detail-section .service-content h2 { font-size: 1.3rem; }
+
+   .contact-section .contact-form-container,
+   .contact-section .contact-info {
+      padding: 20px; // Further reduce padding
+   }
+
+   .file-upload-section .upload-area {
+      padding: 20px;
+      svg { width: 40px; height: 40px; }
+   }
+
+   .error-section {
+      h1 { font-size: 3.5rem; }
+      h2 { font-size: 1.3rem; }
+   }
+}

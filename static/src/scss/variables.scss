@@ -1,0 +1,40 @@
+/* 
+* Variables SCSS for Consolidated Document Solutions
+* This file contains all variables used across the site
+*/
+
+// Colors
+$primary-color: #0066a4;
+$primary-dark: darken($primary-color, 15%);
+$primary-light: lighten($primary-color, 40%);
+$secondary-color: #333333;
+$accent-color: #f8f8f8;
+$light-gray: #f5f5f5;
+$medium-gray: #dddddd;
+$dark-gray: #666666;
+$text-color: #333333;
+$link-color: $primary-color;
+$hover-color: darken($primary-color, 15%);
+$white: #ffffff;
+$shadow: 0 2px 10px rgba(0,0,0,0.1);
+$transition: all 0.3s ease;
+$border-radius: 4px;
+
+// Gradient
+$gradient-primary: linear-gradient(to right, $primary-color, $primary-dark);
+
+// Font families
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Open Sans', sans-serif;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Other variables
+$header-height: 70px;
+$footer-padding: 80px;
+$section-padding: 60px;
+$container-padding: 20px;

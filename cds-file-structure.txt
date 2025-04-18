@@ -1,0 +1,56 @@
+cds-website/
+│
+├── app.py                     # Main Flask application file
+├── config.py                  # Configuration settings
+├── requirements.txt           # Python dependencies
+│
+├── static/                    # Static assets
+│   ├── css/                   # Compiled CSS files
+│   │   ├── main.min.css
+│   │   └── ...
+│   │
+│   ├── src/                   # Source files for processing
+│   │   ├── scss/              # SCSS source files
+│   │   │   ├── main.scss
+│   │   │   ├── components.scss
+│   │   │   ├── responsive.scss
+│   │   │   └── variables.scss
+│   │   │
+│   │   └── js/               # JavaScript source files
+│   │       ├── main.js
+│   │       ├── navigation.js
+│   │       └── slider.js
+│   │
+│   ├── js/                   # Compiled JavaScript files
+│   │   ├── main.min.js
+│   │   └── ...
+│   │
+│   ├── images/               # Image assets
+│   │   ├── logo.png
+│   │   ├── logo-white.png
+│   │   ├── favicon/          # Favicon assets
+│   │   ├── slides/           # Slider images
+│   │   ├── services/         # Service icons and images
+│   │   ├── about/            # About page images
+│   │   ├── team/             # Team member photos
+│   │   └── industries/       # Industry-specific images
+│   │
+│   └── uploads/              # User uploaded files (with proper permissions)
+│
+├── templates/                # HTML templates
+│   ├── base.html            # Base template with common elements
+│   ├── index.html           # Homepage
+│   ├── about.html           # About Us page
+│   ├── testimonials.html    # Customer Testimonials page
+│   ├── industries.html      # Industries Served page
+│   ├── service_detail.html  # Service detail template
+│   ├── contact.html         # Contact page
+│   ├── file_upload.html     # File upload page
+│   ├── 404.html             # Error page - Not Found
+│   └── 500.html             # Error page - Server Error
+│
+└── utils/                   # Utility functions
+    ├── __init__.py
+    ├── forms.py             # Form handling
+    ├── email.py             # Email functionality
+    └── file_handler.py      # File upload handling

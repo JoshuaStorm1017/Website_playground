@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Consolidated Document Solutions{% endblock %}
+{% block description %}Learn about Consolidated Document Solutions, our history, and our commitment to quality printing services since 1966.{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>About Consolidated Document Solutions</h1>
+        <div class="breadcrumbs">
+            <a href="{{ url_for('home') }}">Home</a> &gt; 
+            <span>About Us</span>
+        </div>
+    </div>
+</section>
+
+<!-- About Content -->
+<section class="page-content">
+    <div class="container">
+        <div class="page-grid">
+            <!-- Main Content -->
+            <div class="page-main">
+                <img src="{{ url_for('static', filename='images/about/building.jpg') }}" alt="Consolidated Document Solutions Building" class="about-image fade-in">
+                
+                <div class="content-section slide-up">
+                    <p class="intro-text">Founded in 1966 as Consolidated Business Forms, our company has long been a distributor of <strong>professional business forms</strong>. As technology began to radically change America's offices, our products and services were re-engineered to reflect a changing marketplace. In 1999 we changed our name to Consolidated Document Solutions to more accurately reflect the full portfolio of products and services we offer.</p>
+                    
+                    <p>Today, our company serves an international customer base providing <strong>forms, full color commercial printing, graphic design services, industrial tagging and labeling, membership cards, promotional products</strong>, and much more for <strong>non-profits, major corporations</strong> and <strong>industrial organizations</strong>. From complete <strong>business communication packages</strong> to <strong>shipping, warehousing, mailing</strong> and <strong>fulfillment services</strong>, Consolidated Document Solutions provides everything your business needs to communicate with employees and customers.</p>
+                </div>
+                
+                <div class="about-highlight slide-in-right">
+                    <h3>Our Mission</h3>
+                    <p>At Consolidated Document Solutions, our mission is to be your trusted partner for all business communication needs, providing exceptional quality, service, and value through innovative printing and document solutions.</p>
+                </div>
+                
+                <div class="content-section slide-in-left">
+                    <h2>Our History</h2>
+                    <p>For over five decades, Consolidated Document Solutions has been committed to providing quality printing and document services to businesses across various industries. What began as a business forms company has evolved into a comprehensive document solutions provider that embraces new technologies while maintaining the highest standards of quality and customer service.</p>
+                    
+                    <p>Through each stage of our growth, we've maintained our commitment to personalized service. While we've expanded our capabilities and services, we've never lost sight of what matters most: helping our clients communicate effectively with their audiences through high-quality printed and digital materials.</p>
+                </div>
+                
+                <div class="content-section slide-up">
+                    <h2>Our Approach</h2>
+                    <p>At Consolidated Document Solutions, we believe in a collaborative approach to meeting our clients' needs. We take the time to understand your business objectives and work closely with you to develop solutions that achieve your goals efficiently and effectively.</p>
+                    
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Quality</h3>
+                            <p>We're committed to delivering products and services that exceed expectations, using the latest technology and rigorous quality control processes.</p>
+                        </div>
+                        
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Reliability</h3>
+                            <p>With over 50 years in business, we've built a reputation for delivering on our promises, meeting deadlines, and being there when our clients need us.</p>
+                        </div>
+                        
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h3>Customer-Focused</h3>
+                            <p>We place our customers at the center of everything we do, listening to their needs and tailoring solutions that address their unique challenges.</p>
+                        </div>
+                        
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                </svg>
+                            </div>
+                            <h3>Innovation</h3>
+                            <p>We continually invest in new technologies and techniques to provide our clients with the most effective and efficient solutions for their business communication needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="page-sidebar">
+                <div class="sidebar-card">
+                    <h3>About Us</h3>
+                    <nav class="sidebar-nav">
+                        <ul>
+                            <li><a href="{{ url_for('about') }}" class="active">About Us</a></li>
+                            <li><a href="{{ url_for('testimonials_page') }}">Customer Testimonials</a></li>
+                            <li><a href="{{ url_for('industries_page') }}">Industries Served</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3>Contact Information</h3>
+                    <div class="sidebar-contact">
+                        <p>
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            17501 Malyn Boulevard<br>
+                            Fraser, MI 48026
+                        </p>
+                        <p>
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <a href="tel:8006726726">800-672-6726</a>
+                        </p>
+                        <p>
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <a href="mailto:info@cdocsolutions.com">info@cdocsolutions.com</a>
+                        </p>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-full">Contact Us</a>
+                </div>
+                
+                <div class="sidebar-cta">
+                    <h3>Ready to Get Started?</h3>
+                    <p>Let us help you with your printing and document needs.</p>
+                    <a href="{{ url_for('file_upload') }}" class="btn btn-secondary btn-full">Upload a File</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section slide-up">
+    <div class="container">
+        <h2 class="section-title">Our Leadership Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="{{ url_for('static', filename='images/team/team-1.jpg') }}" alt="Team Member">
+                </div>
+                <h3>John Smith</h3>
+                <p class="team-title">President & CEO</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="{{ url_for('static', filename='images/team/team-2.jpg') }}" alt="Team Member">
+                </div>
+                <h3>Sarah Johnson</h3>
+                <p class="team-title">Chief Operations Officer</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="{{ url_for('static', filename='images/team/team-3.jpg') }}" alt="Team Member">
+                </div>
+                <h3>Michael Williams</h3>
+                <p class="team-title">VP of Sales & Marketing</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="{{ url_for('static', filename='images/team/team-4.jpg') }}" alt="Team Member">
+                </div>
+                <h3>Laura Davis</h3>
+                <p class="team-title">Production Manager</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Work with Us?</h2>
+            <p>Let us help you find the perfect printing and document solutions for your business needs.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">CONTACT US</a>
+                <a href="{{ url_for('file_upload') }}" class="btn btn-outline">UPLOAD A FILE</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
