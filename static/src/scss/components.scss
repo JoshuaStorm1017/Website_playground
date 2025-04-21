@@ -1403,3 +1403,121 @@
     margin-bottom: 30px;
   }
 }
+// --- Mega Menu Styles ---
+
+.nav-dropdown {
+    position: relative; // Needed for absolute positioning of dropdown
+
+    .dropdown-content.mega-menu {
+        display: none; // Hidden by default
+        position: absolute;
+        left: 0;
+        top: 100%; // Position below the parent nav item
+        background-color: #f9f9f9; // Example background
+        min-width: 400px; // Adjust width as needed
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 100; // Ensure it's above other content
+        padding: 15px;
+        border-radius: 4px;
+        display: flex; // Use flexbox for columns
+        flex-wrap: nowrap; // Prevent wrapping
+        opacity: 0; // Start hidden for transition
+        visibility: hidden;
+        transform: translateY(10px); // Start slightly lower
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    }
+
+    // Show mega menu on hover of the parent nav item
+    &:hover > .dropdown-content.mega-menu {
+        display: flex; // Make it visible as flex container
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .mega-menu-column-left,
+    .mega-menu-column-right {
+        padding: 0 15px; // Spacing between columns
+        flex: 1; // Make columns share space (adjust flex basis/grow/shrink as needed)
+        min-width: 180px; // Ensure columns have a minimum width
+    }
+
+    .mega-menu-column-left {
+        border-right: 1px solid #eee; // Separator line
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding: 8px 10px;
+                cursor: pointer; // Indicate hover interaction
+                border-radius: 3px;
+                transition: background-color 0.2s ease;
+                margin-bottom: 2px; // Spacing between items
+
+                span { // Style the category name span
+                    display: block; // Make span take full width for easier hover
+                    color: #333;
+                    font-weight: 600;
+                }
+
+                a { // Style the static links (Artwork Specs, File Upload)
+                    text-decoration: none;
+                    color: #007bff; // Example link color
+                    display: block;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+
+                &.active, // Style for the hovered item in the left column
+                &:hover {
+                   background-color: #e9e9e9; // Highlight on hover/active
+                }
+
+                &.mega-menu-divider hr {
+                    border: 0;
+                    border-top: 1px solid #ddd;
+                    margin: 10px 0;
+                }
+            }
+        }
+    }
+
+    .mega-menu-column-right {
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding: 8px 0; // Adjust padding for submenu items
+
+                a {
+                    text-decoration: none;
+                    color: #0056b3; // Example submenu link color
+                    display: block; // Ensure link takes full width
+                    padding: 5px 10px;
+                    border-radius: 3px;
+                     transition: background-color 0.2s ease;
+
+                    &:hover {
+                        background-color: #f0f0f0; // Highlight submenu item on hover
+                        text-decoration: none;
+                    }
+                }
+
+                &.submenu-placeholder {
+                    color: #777;
+                    font-style: italic;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}
+
+// --- End Mega Menu Styles ---

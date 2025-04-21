@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Products & Services{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Our Products & Services</h1>
+
+    {# Use service_categories from the context processor #}
+    {% if service_categories %}
+        <div class="list-group">
+            {% for category_slug, category in service_categories.items() %}
+                {# Determine if the category has distinct sub-services #}
+                {% set has_sub_services = category.services|length > 1 or (category.services|length == 1 and category.services[0].slug != 'main') %}
+                {# Determine the target service slug for the link #}
+                {% set target_service_slug = category.services[0].slug if category.services else 'main' %}
+
+                <a href="{{ url_for('service_detail', category_slug=category.slug, service_slug=target_service_slug) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    {{ category.name }}
+                    {# Add indicator if there are sub-services #}
+                    {% if has_sub_services %}
+                        <span class="badge bg-secondary rounded-pill">></span>
+                    {% endif %}
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No service categories available at this time.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -25,120 +25,33 @@
                     <p class="intro-text">At Consolidated Document Solutions, we understand that different industries have unique communication and documentation requirements. For over five decades, we've tailored our services to meet the specific needs of diverse sectors, providing customized solutions that help businesses communicate effectively with their audiences.</p>
                 </div>
                 
-                <div class="industries-grid">
-                    <div class="industry-card slide-in-left">
-                        <div class="industry-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-                        </div>
-                        <h2>Healthcare & Medical</h2>
-                        <p>From patient forms and prescription pads to medical brochures and HIPAA-compliant communications, we provide secure and accurate printing solutions for healthcare providers, hospitals, clinics, and medical suppliers.</p>
-                        <ul class="industry-features">
-                            <li>HIPAA-compliant processes</li>
-                            <li>Medical forms and records</li>
-                            <li>Patient education materials</li>
-                            <li>Prescription pads with security features</li>
-                            <li>Medical ID cards and labels</li>
-                        </ul>
-                        <a href="{{ url_for('service_detail', service_id='healthcare') }}" class="btn btn-outline btn-sm">Learn More</a>
-                    </div>
+                <!-- Industry List -->
+                <div class="industries-list-page">
+                    <h2>Industries We Serve</h2>
                     
-                    <div class="industry-card slide-in-right">
-                        <div class="industry-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                                <line x1="8" y1="21" x2="16" y2="21"></line>
-                                <line x1="12" y1="17" x2="12" y2="21"></line>
-                            </svg>
+                    {% for industry in industries %}
+                    <div class="industry-item">
+                        <div class="industry-toggle" aria-expanded="false">
+                            {{ industry }}
                         </div>
-                        <h2>Financial Services</h2>
-                        <p>We deliver secure, compliant printing solutions for banks, credit unions, insurance companies, and financial advisors, ensuring your sensitive documents maintain the highest security standards.</p>
-                        <ul class="industry-features">
-                            <li>Secure check printing</li>
-                            <li>Financial statements and reports</li>
-                            <li>Account opening kits</li>
-                            <li>Loan application forms</li>
-                            <li>Compliance documentation</li>
-                        </ul>
-                        <a href="{{ url_for('service_detail', service_id='financial') }}" class="btn btn-outline btn-sm">Learn More</a>
-                    </div>
-                    
-                    <div class="industry-card slide-in-left">
-                        <div class="industry-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                            </svg>
+                        <div class="industry-content">
+                            <p>At Consolidated Document Solutions, we offer specialized printing and document solutions to meet the unique needs of {{ industry }}. Our comprehensive services include custom forms, commercial printing, promotional items, and fulfillment services tailored to your industry-specific requirements.</p>
+                            
+                            <h4>Industry-Specific Solutions:</h4>
+                            <ul>
+                                <li>Customized business forms and documentation</li>
+                                <li>Professional marketing materials and brochures</li>
+                                <li>Industry-compliant labels and packaging</li>
+                                <li>Promotional products for client engagement</li>
+                                <li>Secure document management and distribution</li>
+                            </ul>
+                            
+                            <p>Contact us today to discuss how we can create tailored solutions for your specific needs in the {{ industry }} industry.</p>
+                            
+                            <a href="{{ url_for('contact') }}?industry={{ industry|urlencode }}" class="btn btn-outline">Get Industry-Specific Solutions</a>
                         </div>
-                        <h2>Manufacturing & Industrial</h2>
-                        <p>Our durable printing solutions for the manufacturing sector include industrial labels, safety documentation, equipment tags, and packaging materials designed to withstand harsh environments.</p>
-                        <ul class="industry-features">
-                            <li>Industrial tags and labels</li>
-                            <li>Safety documentation</li>
-                            <li>Equipment manuals</li>
-                            <li>Inventory tracking forms</li>
-                            <li>Durable weatherproof printing</li>
-                        </ul>
-                        <a href="{{ url_for('service_detail', service_id='manufacturing') }}" class="btn btn-outline btn-sm">Learn More</a>
                     </div>
-                    
-                    <div class="industry-card slide-in-right">
-                        <div class="industry-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                            </svg>
-                        </div>
-                        <h2>Education</h2>
-                        <p>From course materials and student handbooks to diplomas and promotional materials, we support educational institutions with high-quality printing solutions that make a lasting impression.</p>
-                        <ul class="industry-features">
-                            <li>Course catalogs and schedules</li>
-                            <li>Student handbooks and manuals</li>
-                            <li>Certificates and diplomas</li>
-                            <li>Alumni communications</li>
-                            <li>Campus signage and materials</li>
-                        </ul>
-                        <a href="{{ url_for('service_detail', service_id='education') }}" class="btn btn-outline btn-sm">Learn More</a>
-                    </div>
-                    
-                    <div class="industry-card slide-in-left">
-                        <div class="industry-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                            </svg>
-                        </div>
-                        <h2>Non-Profit Organizations</h2>
-                        <p>We help non-profits maximize their impact with cost-effective printing solutions for fundraising materials, donor communications, event promotions, and awareness campaigns.</p>
-                        <ul class="industry-features">
-                            <li>Fundraising materials</li>
-                            <li>Donor recognition items</li>
-                            <li>Annual reports</li>
-                            <li>Event programs and tickets</li>
-                            <li>Volunteer handbooks</li>
-                        </ul>
-                        <a href="{{ url_for('service_detail', service_id='nonprofit') }}" class="btn btn-outline btn-sm">Learn More</a>
-                    </div>
-                    
-                    <div class="industry-card slide-in-right">
-                        <div class="industry-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="3" y1="9" x2="21" y2="9"></line>
-                                <line x1="9" y1="21" x2="9" y2="9"></line>
-                            </svg>
-                        </div>
-                        <h2>Retail & Hospitality</h2>
-                        <p>Drive customer engagement with visually appealing menus, point-of-sale materials, branded packaging, promotional materials, and signage tailored for retail and hospitality businesses.</p>
-                        <ul class="industry-features">
-                            <li>Custom packaging and bags</li>
-                            <li>Menus and table tents</li>
-                            <li>Point-of-sale displays</li>
-                            <li>Loyalty cards and programs</li>
-                            <li>Seasonal promotional materials</li>
-                        </ul>
-                        <a href="{{ url_for('service_detail', service_id='retail') }}" class="btn btn-outline btn-sm">Learn More</a>
-                    </div>
+                    {% endfor %}
                 </div>
                 
                 <div class="content-section slide-up">
@@ -166,10 +79,10 @@
                     <nav class="sidebar-nav">
                         <ul>
                             <li><a href="{{ url_for('service_detail', service_id='commercial-printing') }}">Commercial Printing</a></li>
-                            <li><a href="{{ url_for('service_detail', service_id='business-forms') }}">Business Forms</a></li>
                             <li><a href="{{ url_for('service_detail', service_id='promotional-items') }}">Promotional Products</a></li>
-                            <li><a href="{{ url_for('service_detail', service_id='packaging-fulfillment') }}">Fulfillment Services</a></li>
-                            <li><a href="{{ url_for('service_detail', service_id='commercial-printing') }}">View All Services</a></li>
+                            <li><a href="{{ url_for('service_detail', service_id='graphic-design') }}">Graphic Design</a></li>
+                            <li><a href="{{ url_for('service_detail', service_id='thermal-transfer-tags') }}">Thermal Transfer Tags</a></li>
+                            <li><a href="{{ url_for('service_detail', service_id='packaging-fulfillment') }}">Packaging & Fulfillment</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -196,42 +109,55 @@
     </div>
 </section>
 
-<!-- Case Studies Section -->
-<section class="case-studies-section slide-up">
+<!-- Popular Industries Section -->
+<section class="popular-industries-section slide-up">
     <div class="container">
-        <h2 class="section-title">Industry Success Stories</h2>
-        <div class="case-studies-grid">
-            <div class="case-study-card">
-                <div class="case-study-image">
-                    <img src="{{ url_for('static', filename='images/case-studies/healthcare-case-study.jpg') }}" alt="Healthcare Case Study">
+        <h2 class="section-title">Popular Industries We Serve</h2>
+        <div class="industry-highlights">
+            <div class="industry-highlight-card">
+                <div class="industry-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
                 </div>
-                <div class="case-study-content">
-                    <h3>Streamlining Patient Communications for Regional Hospital Network</h3>
-                    <p>Learn how we helped a healthcare provider improve patient engagement while reducing printing costs by 35%.</p>
-                    <a href="{{ url_for('case_study', id='healthcare-network') }}" class="text-link">Read Case Study</a>
-                </div>
+                <h3>Healthcare & Medical</h3>
+                <p>Secure, compliant printing solutions for healthcare providers, including patient forms, prescription pads, and HIPAA-compliant communications.</p>
             </div>
             
-            <div class="case-study-card">
-                <div class="case-study-image">
-                    <img src="{{ url_for('static', filename='images/case-studies/manufacturing-case-study.jpg') }}" alt="Manufacturing Case Study">
+            <div class="industry-highlight-card">
+                <div class="industry-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
                 </div>
-                <div class="case-study-content">
-                    <h3>Durable Industrial Labeling Solution for Manufacturing Plant</h3>
-                    <p>Discover how our custom labeling system improved inventory tracking and workplace safety compliance.</p>
-                    <a href="{{ url_for('case_study', id='manufacturing-plant') }}" class="text-link">Read Case Study</a>
-                </div>
+                <h3>Financial Services</h3>
+                <p>Secure printing for banks, credit unions, and insurance companies, including statements, reports, and compliance documentation.</p>
             </div>
             
-            <div class="case-study-card">
-                <div class="case-study-image">
-                    <img src="{{ url_for('static', filename='images/case-studies/financial-case-study.jpg') }}" alt="Financial Case Study">
+            <div class="industry-highlight-card">
+                <div class="industry-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
                 </div>
-                <div class="case-study-content">
-                    <h3>Secure Document Management for Financial Institution</h3>
-                    <p>See how we implemented a secure printing and fulfillment solution for sensitive financial communications.</p>
-                    <a href="{{ url_for('case_study', id='financial-institution') }}" class="text-link">Read Case Study</a>
+                <h3>Non-Profit Organizations</h3>
+                <p>Cost-effective printing solutions for fundraising materials, donor communications, event promotions, and awareness campaigns.</p>
+            </div>
+            
+            <div class="industry-highlight-card">
+                <div class="industry-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
                 </div>
+                <h3>Manufacturing & Industrial</h3>
+                <p>Durable printing solutions including industrial labels, safety documentation, equipment tags, and packaging materials.</p>
             </div>
         </div>
     </div>
@@ -245,9 +171,49 @@
             <p>Let us help you discover the perfect printing and document solutions for your business needs.</p>
             <div class="cta-buttons">
                 <a href="{{ url_for('contact') }}" class="btn btn-primary">CONTACT US</a>
-                <a href="{{ url_for('quote_request') }}" class="btn btn-outline">REQUEST A QUOTE</a>
+                <a href="{{ url_for('contact') }}?subject=quote" class="btn btn-outline">REQUEST A QUOTE</a>
             </div>
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize industries accordion
+    const industryToggles = document.querySelectorAll('.industry-toggle');
+    
+    industryToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const industryItem = this.closest('.industry-item');
+            
+            // Toggle active class
+            industryItem.classList.toggle('active');
+            
+            // Toggle aria-expanded attribute for accessibility
+            const expanded = industryItem.classList.contains('active');
+            this.setAttribute('aria-expanded', expanded);
+            
+            // Close other accordions if needed
+            if (expanded) {
+                industryToggles.forEach(otherToggle => {
+                    if (otherToggle !== toggle) {
+                        const otherItem = otherToggle.closest('.industry-item');
+                        otherItem.classList.remove('active');
+                        otherToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    });
+    
+    // Set the first item as active by default
+    if (industryToggles.length > 0) {
+        const firstIndustry = industryToggles[0].closest('.industry-item');
+        firstIndustry.classList.add('active');
+        industryToggles[0].setAttribute('aria-expanded', 'true');
+    }
+});
+</script>
 {% endblock %}

@@ -35,6 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Add animation on scroll
   initScrollAnimation();
+
+  // Initialize quote request form validation if it exists
+  if (document.querySelector('form[method="POST"]')) { // Assuming the quote request form is the only POST form without a specific ID
+    initQuoteRequestFormValidation();
+  }
 });
 
 /**
@@ -729,4 +734,191 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize form validations
   initContactFormValidation();
   initFileUploadValidation();
+  initFileUploadValidation();
+  initQuoteRequestFormValidation(); // Add call to quote request form validation
 });
+
+/**
+ * Initialize quote request form validation
+ */
+function initQuoteRequestFormValidation() {
+  const form = document.querySelector('form[method="POST"]'); // Target the quote request form
+
+  if (!form) return;
+
+  form.addEventListener('submit', function(event) {
+    let isValid = true;
+
+    // Clear previous errors
+    form.querySelectorAll('.error-message').forEach(error => error.remove());
+    form.querySelectorAll('.form-control').forEach(input => input.classList.remove('is-invalid'));
+
+    // Get form elements
+    const nameInput = form.querySelector('#name');
+    const emailInput = form.querySelector('#email');
+    const industryInput = form.querySelector('#industry');
+    const serviceTypeInput = form.querySelector('#service_type');
+    const detailsInput = form.querySelector('#details');
+
+    // Validate Name
+    if (nameInput && nameInput.value.trim() === '') {
+      displayError(nameInput, 'Name is required.');
+      isValid = false;
+    }
+
+    // Validate Email
+    if (emailInput) {
+      if (emailInput.value.trim() === '') {
+        displayError(emailInput, 'Email is required.');
+        isValid = false;
+      } else if (!isValidEmail(emailInput.value)) {
+        displayError(emailInput, 'Please enter a valid email address.');
+        isValid = false;
+      }
+    }
+
+    // Validate Industry
+    if (industryInput && industryInput.value.trim() === '') {
+       displayError(industryInput, 'Industry is required.');
+       isValid = false;
+    }
+
+    // Validate Service Type
+    if (serviceTypeInput && serviceTypeInput.value.trim() === '') {
+       displayError(serviceTypeInput, 'Service Type is required.');
+       isValid = false;
+    }
+
+    // Validate Details
+    if (detailsInput && detailsInput.value.trim() === '') {
+       displayError(detailsInput, 'Details are required.');
+       isValid = false;
+    }
+
+
+    if (!isValid) {
+      event.preventDefault(); // Prevent form submission if invalid
+    }
+  });
+
+  // Helper function to display error messages
+  function displayError(inputElement, message) {
+    const errorElement = document.createElement('div');
+    errorElement.className = 'error-message text-danger'; // Add a class for styling
+    errorElement.textContent = message;
+    inputElement.classList.add('is-invalid'); // Add a class to the input for styling
+    inputElement.parentNode.insertBefore(errorElement, inputElement.nextSibling);
+  }
+
+  // Helper function to clear error messages (already handled at the start of submit)
+  // function clearError(inputElement) {
+  //   const errorElement = inputElement.parentNode.querySelector('.error-message');
+  //   if (errorElement) {
+  //     errorElement.remove();
+  //     inputElement.classList.remove('is-invalid');
+  //   }
+  // }
+
+  // Basic email validation regex
+  function isValidEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+}
+// --- Mega Menu Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const servicesDropdown = document.querySelector('.nav-dropdown a[href*="services_index"]'); // Find the main P&S link
+    if (!servicesDropdown) return; // Exit if not found
+
+    const megaMenuContainer = servicesDropdown.closest('.nav-dropdown'); // Get the parent li.nav-dropdown
+    if (!megaMenuContainer) return;
+
+    const leftColumnItems = megaMenuContainer.querySelectorAll('.mega-menu-column-left ul li[data-category-slug]');
+    const submenuDisplayArea = megaMenuContainer.querySelector('#submenu-display-area');
+    const serviceDataElement = document.getElementById('service-categories-data');
+
+    if (!leftColumnItems.length || !submenuDisplayArea || !serviceDataElement) {
+        console.error("Mega menu elements not found.");
+        return; // Exit if essential elements are missing
+    }
+
+    // Parse the embedded service data
+    let serviceCategoriesData = {};
+    try {
+        serviceCategoriesData = JSON.parse(serviceDataElement.textContent);
+    } catch (e) {
+        console.error("Error parsing service categories JSON data:", e);
+        return; // Exit if data parsing fails
+    }
+
+    // Function to generate URL (basic version, assumes standard Flask routing)
+    // In a real Flask app, you might pass url_for endpoints via JS variables if needed
+    function generateServiceUrl(categorySlug, serviceSlug) {
+        // Adjust this path based on your actual Flask route structure if different
+        return `/services/${categorySlug}/${serviceSlug}`;
+    }
+
+    // Function to update the right column
+    function updateSubmenu(categorySlug) {
+        submenuDisplayArea.innerHTML = ''; // Clear previous items
+        const category = serviceCategoriesData[categorySlug];
+
+        if (category && category.services) {
+            // Check if it has 'real' sub-services
+            const hasSubServices = category.services.length > 1 || (category.services.length === 1 && category.services[0].slug !== 'main');
+
+            if (hasSubServices) {
+                category.services.forEach(service => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = generateServiceUrl(category.slug, service.slug);
+                    a.textContent = service.name;
+                    li.appendChild(a);
+                    submenuDisplayArea.appendChild(li);
+                });
+            } else {
+                // If only 'main' service or no 'real' subs, maybe show category description or link?
+                // For now, show a message or leave blank. Let's show a message.
+                 const li = document.createElement('li');
+                 li.classList.add('submenu-placeholder'); // Reuse placeholder class
+                 // Link the main category name directly if no distinct sub-services
+                 if (category.services.length === 1 && category.services[0].slug === 'main') {
+                     const a = document.createElement('a');
+                     a.href = generateServiceUrl(category.slug, 'main');
+                     a.textContent = `View ${category.name} Details`;
+                     li.appendChild(a);
+                 } else {
+                    li.textContent = category.description || `Explore ${category.name}`; // Show description or default text
+                 }
+                 submenuDisplayArea.appendChild(li);
+            }
+        } else {
+            // Handle case where category data might be missing or has no services array
+             const li = document.createElement('li');
+             li.classList.add('submenu-placeholder');
+             li.textContent = 'No services listed for this category.';
+             submenuDisplayArea.appendChild(li);
+        }
+    }
+
+    // Add hover listeners to left column items
+    leftColumnItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            // Remove active class from all items
+            leftColumnItems.forEach(i => i.classList.remove('active'));
+            // Add active class to the hovered item
+            item.classList.add('active');
+            // Update the right column
+            const categorySlug = item.getAttribute('data-category-slug');
+            updateSubmenu(categorySlug);
+        });
+    });
+
+    // Optional: Clear submenu when mouse leaves the entire mega menu
+    megaMenuContainer.addEventListener('mouseleave', () => {
+        // Reset to default placeholder or clear
+        submenuDisplayArea.innerHTML = '<li class="submenu-placeholder">Hover over a category to see services.</li>';
+        leftColumnItems.forEach(i => i.classList.remove('active')); // Remove active class
+    });
+});
+// --- End Mega Menu Logic ---

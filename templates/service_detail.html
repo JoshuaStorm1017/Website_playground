@@ -1,10 +1,57 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}
-Service Detail
-{% endblock %}
+{% block title %}{{ service.name if service else 'Service Not Found' }}{% endblock %}
 
 {% block content %}
-    <h1>Service Name</h1>
-    <p>Placeholder for service description.</p>
+<div class="container py-5">
+    {% if service %}
+        <h1 class="mb-4">{{ service.name }}</h1>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                Service Details
+            </div>
+            <div class="card-body">
+                {# Use |safe filter if details contain HTML #}
+                <p>{{ service.description | safe }}</p> {# Changed from service.details to service.description as per requirement 3 #}
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                Benefits
+            </div>
+            <div class="card-body">
+                {# Assuming benefits is a list, iterate over it #}
+                {% if service.benefits is iterable and service.benefits is not string %}
+                    <ul>
+                        {% for benefit in service.benefits %}
+                            <li>{{ benefit }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {# Fallback if benefits is just a string #}
+                    <p>{{ service.benefits }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        {# Call to Action #}
+        <div class="card mb-4">
+             <div class="card-header">
+                Get Started
+            </div>
+            <div class="card-body text-center">
+                <p>Interested in {{ service.name }}? Request a personalized quote today!</p>
+                <a href="{{ url_for('quote_request') }}" class="btn btn-primary btn-lg">Request a Quote</a>
+            </div>
+        </div>
+
+    {% else %}
+        {# Fallback if service object is not passed or not found #}
+        <h1>Service Not Found</h1>
+        <p>The requested service could not be found.</p>
+        <a href="{{ url_for('services_index') }}" class="btn btn-secondary">Back to Services</a>
+    {% endif %}
+</div>
 {% endblock %}

@@ -29,7 +29,7 @@
                 <div class="top-bar-links">
                     <a href="{{ url_for('home') }}">Home</a>
                     <a href="{{ url_for('file_upload') }}">File Upload</a>
-                    <a href="#">Artwork Specifications</a>
+                    <a href="{{ url_for('artwork_specifications') }}">Artwork Specifications</a>
                 </div>
                 <div class="phone-number">
                     <a href="tel:8006726726">
@@ -68,13 +68,40 @@
                             </div>
                         </li>
                         <li class="nav-dropdown {% if request.path.startswith('/services') %}active{% endif %}">
-                            <a href="#">PRODUCTS & SERVICES</a>
-                            <div class="dropdown-content">
-                                <a href="{{ url_for('service_detail', service_id='commercial-printing') }}">Commercial Printing</a>
-                                <a href="{{ url_for('service_detail', service_id='promotional-items') }}">Promotional Items</a>
-                                <a href="{{ url_for('service_detail', service_id='graphic-design') }}">Graphic Design</a>
-                                <a href="{{ url_for('service_detail', service_id='thermal-transfer-tags') }}">Thermal Transfer Tags</a>
-                                <a href="{{ url_for('service_detail', service_id='packaging-fulfillment') }}">Packaging & Fulfillment</a>
+                            {# Link the main dropdown title to the services index page #}
+                            <a href="{{ url_for('services_index') }}">PRODUCTS & SERVICES</a>
+                            <div class="dropdown-content mega-menu"> {# Add mega-menu class #}
+                                <div class="mega-menu-column-left">
+                                    <ul>
+                                        {# Use service_categories injected by the context processor #}
+                                        {% if service_categories %}
+                                            {% for category_slug, category in service_categories.items() %}
+                                                {# Check if category has 'real' sub-services for visual indicator #}
+                                                {% set has_sub_services = category.services and (category.services|length > 1 or (category.services|length == 1 and category.services[0].slug != 'main')) %}
+                                                <li data-category-slug="{{ category.slug }}">
+                                                    <span>
+                                                        {{ category.name }}
+                                                        {% if has_sub_services %}>{% endif %}
+                                                    </span>
+                                                </li>
+                                            {% endfor %}
+                                        {% else %}
+                                            {# Fallback if service_categories is somehow not available #}
+                                            <li><a href="{{ url_for('services_index') }}">View All Services</a></li>
+                                        {% endif %}
+                                        {# Add required static links #}
+                                        <li class="mega-menu-divider"><hr></li> {# Optional divider #}
+                                        <li><a href="{{ url_for('artwork_specifications') }}">Artwork Specifications</a></li>
+                                        <li><a href="{{ url_for('file_upload') }}">File Upload</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu-column-right">
+                                    <ul id="submenu-display-area">
+                                        {# Submenu items will be injected here by JavaScript #}
+                                        {# Optional: Add a default message or image #}
+                                        <li class="submenu-placeholder">Hover over a category to see services.</li>
+                                    </ul>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-dropdown">
@@ -147,11 +174,10 @@
                     <ul class="footer-links">
                         <li><a href="{{ url_for('about') }}">About Us</a></li>
                         <li><a href="#">Products & Services</a></li>
-                        <li><a href="{{ url_for('service_detail', service_id='commercial-printing') }}">Commercial Printing</a></li>
-                        <li><a href="{{ url_for('service_detail', service_id='promotional-items') }}">Promotional Items</a></li>
-                        <li><a href="{{ url_for('service_detail', service_id='graphic-design') }}">Graphic Design</a></li>
-                        <li><a href="{{ url_for('service_detail', service_id='thermal-transfer-tags') }}">Thermal Transfer Tags</a></li>
-                        <li><a href="{{ url_for('service_detail', service_id='packaging-fulfillment') }}">Packaging & Fulfillment</a></li>
+                        <li><a href="{{ url_for('service_detail', category_slug='printing', service_slug='commercial-printing') }}">Commercial Printing</a></li>
+                        <li><a href="{{ url_for('service_detail', category_slug='graphic-design', service_slug='main') }}">Graphic Design</a></li>
+                        <li><a href="{{ url_for('service_detail', category_slug='thermal-transfer', service_slug='thermal-tags') }}">Thermal Transfer Tags</a></li>
+                        <li><a href="{{ url_for('service_detail', category_slug='packaging-fulfillment', service_slug='main') }}">Packaging & Fulfillment</a></li>
                         <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
                     </ul>
                 </div>
@@ -214,5 +240,10 @@
         <script src="{{ ASSET_URL }}"></script>
     {% endassets %}
     {% block scripts %}{% endblock %}
+
+    {# Embed service categories data as JSON for JavaScript #}
+    <script id="service-categories-data" type="application/json">
+        {{ service_categories | tojson | safe }}
+    </script>
 </body>
 </html>

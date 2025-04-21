@@ -1,126 +1,108 @@
 # Consolidated Document Solutions Website
 
-A modern, professional website redesign for Consolidated Document Solutions, a printing and document services company established in 1966.
+This is a Flask-based website for Consolidated Document Solutions, showcasing their services, testimonials, and industries served, with a form for quote requests.
 
-## Getting Started
+## Setup Instructions
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository_url>
+    cd <repository_directory>
+    ```
+2.  **Create a virtual environment:**
+    ```bash
+    python -m venv cw_env
+    ```
+3.  **Activate the virtual environment:**
+    *   **Windows:**
+        ```bash
+        venv\Scripts\activate
+        ```
+    *   **macOS/Linux:**
+        ```bash
+        source venv/bin/activate
+        ```
+4.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+5.  **Set environment variables:**
+    *   You need to set a `SECRET_KEY` for Flask sessions and CSRF protection.
+    *   Set `FLASK_APP=app.py`.
+    *   Set `FLASK_ENV=development` for development mode (enables debug features).
 
-### Prerequisites
+    Example (Windows):
+    ```bash
+    set SECRET_KEY=your_secret_key_here
+    set FLASK_APP=app.py
+    set FLASK_ENV=development
+    ```
 
-- Python 3.8 or higher
-- pip (Python package installer)
-- Git (optional, for version control)
+    Example (macOS/Linux):
+    ```bash
+    export SECRET_KEY=your_secret_key_here
+    export FLASK_APP=app.py
+    export FLASK_ENV=development
+    ```
 
-### Installation
+## Running the Application
 
-1. Clone the repository (or download and extract the ZIP file)
-   ```
-   git clone https://github.com/your-username/cds-website.git
-   cd cds-website
-   ```
+Make sure your virtual environment is activated and environment variables are set.
 
-2. Create and activate a virtual environment (recommended)
-   ```
-   # Windows
-   python -m venv venv
-   venv\Scripts\activate
-
-   # macOS/Linux
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-3. Install the required packages
-   ```
-   pip install -r requirements.txt
-   ```
-
-4. Create necessary directories
-   ```
-   mkdir -p static/uploads
-   ```
-
-5. Run the development server
-   ```
-   python app.py
-   ```
-
-6. Open your browser and navigate to [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
-
-## Project Structure
-
-```
-cds-website/
-│
-├── app.py                     # Main Flask application file
-├── config.py                  # Configuration settings
-├── requirements.txt           # Python dependencies
-│
-├── static/                    # Static assets
-│   ├── css/                   # Compiled CSS files
-│   ├── src/                   # Source files for processing
-│   │   ├── scss/              # SCSS source files
-│   │   └── js/                # JavaScript source files
-│   ├── js/                    # Compiled JavaScript files
-│   ├── images/                # Image assets
-│   └── uploads/               # User uploaded files
-│
-├── templates/                 # HTML templates
-│   ├── base.html              # Base template with common elements
-│   ├── index.html             # Homepage
-│   └── ...                    # Other templates
-│
-└── utils/                     # Utility functions
+```bash
+flask run
 ```
 
-## Development
+The application will be available at `http://127.0.0.1:5000/`.
 
-### SCSS Compilation
+## Directory Structure
 
-This project uses SCSS for styling. To compile SCSS to CSS, you have two options:
+*   `app.py`: The main Flask application file, containing routes, data structures, and basic logic.
+*   `forms.py`: Defines Flask-WTF forms used in the application.
+*   `static/`: Contains static assets like CSS, JavaScript, and images.
+    *   `static/css/`: Compiled CSS files.
+    *   `static/js/`: Compiled JavaScript files.
+    *   `static/images/`: Image assets.
+    *   `static/src/`: Source files for static assets (e.g., SCSS, raw JS).
+*   `templates/`: Contains Jinja2 HTML templates for rendering pages.
+*   `tests/`: Contains test files for the application.
+*   `requirements.txt`: Lists the project dependencies.
+*   `README.md`: Project documentation.
+*   `wsgi.py`: Entry point for WSGI servers (e.g., Gunicorn).
 
-1. Use Flask-Assets (setup in app.py)
-   - The SCSS files will be automatically compiled when you run the Flask application
+## Content Management
 
-2. Manual compilation (if you prefer)
-   ```
-   # Install sass globally if you haven't already
-   npm install -g sass
+Content for products/services, testimonials, and industries is currently managed directly within the `app.py` file using Python data structures (lists of dictionaries).
 
-   # Compile
-   sass static/src/scss/main.scss:static/css/main.css
-   ```
+*   **Products and Services:** Modify the `services` list in `app.py`. Each dictionary represents a service and should include keys like `slug`, `name`, `description`, etc. The `slug` is used in the URL.
+*   **Testimonials:** Modify the `testimonials` list in `app.py`. Each dictionary represents a testimonial and should include keys like `quote`, `author`, etc.
+*   **Industries:** Modify the `industries` list in `app.py`. Each dictionary represents an industry and should include keys like `slug`, `name`, `description`, etc. The `slug` is used in the URL.
 
-### JavaScript
+To update content, you will need to edit `app.py` and restart the Flask development server.
 
-The JavaScript files in `static/src/js/` are concatenated and minified to `static/js/main.min.js` using Flask-Assets.
+## Running Tests
 
-### Templates
+Make sure your virtual environment is activated and dependencies (including `pytest` and `pytest-cov`) are installed.
 
-The templates use Jinja2, Flask's templating engine. The base template (`base.html`) contains the common elements (header, footer, navigation) and other templates extend from it.
+To run the test suite:
 
-## Deployment
+```bash
+pytest
+```
 
-For production deployment, consider the following steps:
+To run tests and generate a coverage report:
 
-1. Set environment variables for production
-   ```
-   export FLASK_ENV=production
-   export SECRET_KEY=your-secure-secret-key
-   ```
+```bash
+pytest --cov=.
+```
 
-2. Use a production WSGI server like Gunicorn
-   ```
-   gunicorn -w 4 wsgi:app
-   ```
+This will run the tests and show a coverage summary in the terminal.
 
-3. Set up a reverse proxy (like Nginx or Apache) to serve static files and forward requests to the WSGI server
+## Environment Requirements
 
-## Contributing
+The following environment variables are required to run the application:
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+*   `SECRET_KEY`: A strong, random string used for security purposes (sessions, CSRF protection).
+*   `FLASK_APP`: Should be set to `app.py`.
+*   `FLASK_ENV`: Set to `development` for development or `production` for production.
+*   `LOG_LEVEL`: (Optional) Sets the logging level (e.g., INFO, DEBUG, WARNING, ERROR). Defaults to INFO.
